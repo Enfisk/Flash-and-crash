@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovingPlatform : BaseActivatee {
+public class MovingPlatform : BaseActivatee
+{
     public Transform startingPoint;
     public Transform endPoint;
     public float speed;
@@ -10,11 +11,19 @@ public class MovingPlatform : BaseActivatee {
     private bool hasReachedEnd;
     private float timePassed = 0.0f;
 
-	void Start () {
+    void Start()
+    {
         hasReachedEnd = false;
-	}
-	
-	void Update () {
+    }
+
+    override public void Activate(float p_value)
+    {
+        Debug.Log(p_value);
+        transform.position = Vector3.MoveTowards(transform.position, endPoint.position, p_value * Time.deltaTime);
+    }
+
+    void Update()
+    {
         if (isActivated && (startingPoint != null && endPoint != null))
         {
             if (!hasReachedEnd)
@@ -44,5 +53,5 @@ public class MovingPlatform : BaseActivatee {
                 }
             }
         }
-	}
+    }
 }

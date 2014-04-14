@@ -21,7 +21,7 @@ public class Spinner : MonoBehaviour
     {
         //degreesSpun = 0.0f;
         go = null;
-        lastPoint = transform.TransformDirection(Vector3.forward);
+        lastPoint = transform.TransformDirection(Vector3.up);
         lastPoint.y = 0;
     }
 
@@ -66,7 +66,7 @@ public class Spinner : MonoBehaviour
 
             lastPoint = facing;
 
-            Debug.Log(totalRotation);
+            //Debug.Log(totalRotation);
             //float oldRotation = transform.rotation.eulerAngles.y;
             ////float rotationDiff = go.transform.rotation.eulerAngles.y - transform.rotation.eulerAngles.y;
             ////Debug.Log(string.Format("GameObject: {0}, Spinner: {1}", go.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.y));
