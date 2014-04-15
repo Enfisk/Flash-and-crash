@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Activatees\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Activators\GroundSpinner.cs" />
      <Compile Include="Assets\Scripts\Activators\HoldButton.cs" />
+     <Compile Include="Assets\Scripts\Activators\Lightswitch.cs" />
      <Compile Include="Assets\Scripts\Activators\PressOnceButton.cs" />
      <Compile Include="Assets\Scripts\Activators\Spinner.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />

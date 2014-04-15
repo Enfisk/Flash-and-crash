@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GroundSpinner : MonoBehaviour
 {
-    public BaseActivatee activatee;
+    public BaseActivatee[] activatees;
 
     private List<Transform> childList = new List<Transform>();
     private GameObject go;
@@ -60,7 +60,11 @@ public class GroundSpinner : MonoBehaviour
                 child.transform.Rotate(Vector3.up, angle);
             }
 
-            activatee.Activate(angle);
+            foreach (BaseActivatee a in activatees)
+            {
+                a.Activate(angle);
+            }
+
 
             totalRotation += angle;
 

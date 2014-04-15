@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class PressOnceButton : MonoBehaviour {
-    public BaseActivatee pu_ObjectToOpen;
+    public BaseActivatee[] activatees;
 
     void OnTriggerEnter(Collider p_other)
     {
-        pu_ObjectToOpen.Activate();
+        foreach (BaseActivatee activatee in activatees)
+        {
+            activatee.Activate();
+        }
     }
 }
