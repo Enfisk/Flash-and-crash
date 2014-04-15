@@ -9,10 +9,9 @@ public class MovementTest1 : MonoBehaviour
     public int deviceNumber = 0;
     public int rotationMouse = 0;
     public float sensitivity = 1.0f;
+    public float maxSpeed = 10.0f;
     private static bool hasIntialized = false;
-    public float speed_x;
-    public float speed_y;
-    public float speed_z;
+
     ManyMouseEvent mouseEvents = new ManyMouseEvent();
 
     public enum ManyMouseEventType
@@ -53,9 +52,8 @@ public class MovementTest1 : MonoBehaviour
         {
             Debug.Log(ManyMouse_Init());
             hasIntialized = true;
-
-            //Debug.Log("start, deviceNumber " + deviceNumber);
         }
+
     }
 
     void OnApplicationQuit()
@@ -65,28 +63,20 @@ public class MovementTest1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        speed_x = rigidbody.velocity.x;
-        speed_y = rigidbody.velocity.y;
-        speed_z = rigidbody.velocity.z;
         if (hasIntialized)
         {
             Debug.Log("if hasInitialized, deviceNumber " + deviceNumber);
             while (ManyMouse_PollEvent(ref mouseEvents) != 0)
             {
-                //Debug.Log("ManyMouse_PollEvent, deviceNumber " + deviceNumber);
-
                 if (mouseEvents.type == ManyMouseEventType.MANYMOUSE_EVENT_RELMOTION)
                 {
                     if (deviceNumber == mouseEvents.device)
                     {
-                        //Debug.Log(deviceNumber);
-
-                        //Debug.Log(string.Format("Device {0}, deviceNumber {1}, value {2}", mouseEvents.device, deviceNumber, mouseEvents.value));
-                        if (mouseEvents.item == 0)
+                        if (mouseEvents.item == 0)  //Mouse X Axis
                         {
                             rigidbody.AddForce(mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
                         }
-                        else if (mouseEvents.item == 1)
+                        else if (mouseEvents.item == 1)    //Mouse Y Axis
                         {
                             rigidbody.AddForce(0, 0, -mouseEvents.value * sensitivity * Time.deltaTime);
                         }
@@ -95,20 +85,13 @@ public class MovementTest1 : MonoBehaviour
                     {
                         if (mouseEvents.item == 0)
                         {
-                            transform.RotateAround(transform.position, Vector3.up, mouseEvents.value * 0.1f/*Time.deltaTime * 90.0f*/);
+                            transform.Rotate(0, mouseEvents.value, 0, Space.Self);
                         }
                     }
                 }
             }
         }
 
-        if (rigidbody.velocity.x > 10)
-        {
-            rigidbody.velocity.Set(10, rigidbody.velocity.y, rigidbody.velocity.z);
-        }
-        if (rigidbody.velocity.y > 10)
-        {
-            rigidbody.velocity.Set(rigidbody.velocity.x, 10, rigidbody.velocity.z);
-        }
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxSpeed);
     }
 }

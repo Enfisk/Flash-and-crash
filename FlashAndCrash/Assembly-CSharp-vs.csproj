@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Activatees\BaseActivatee.cs" />
+     <Compile Include="Assets\Scripts\Activatees\Gate.cs" />
      <Compile Include="Assets\Scripts\Activatees\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Activators\GroundSpinner.cs" />
      <Compile Include="Assets\Scripts\Activators\HoldButton.cs" />

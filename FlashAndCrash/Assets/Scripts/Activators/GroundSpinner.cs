@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GroundSpinner : MonoBehaviour {
+public class GroundSpinner : MonoBehaviour
+{
     public BaseActivatee activatee;
 
     private List<Transform> childList = new List<Transform>();
@@ -10,15 +11,16 @@ public class GroundSpinner : MonoBehaviour {
     private float totalRotation = 0;
     private Vector3 lastPoint;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         go = null;
 
         foreach (Transform child in transform)
         {
             childList.Add(child);
         }
-	}
+    }
 
     void OnTriggerEnter(Collider p_other)
     {
@@ -26,6 +28,7 @@ public class GroundSpinner : MonoBehaviour {
         {
             totalRotation = 0.0f;
             go = p_other.gameObject;
+            lastPoint = go.transform.TransformDirection(Vector3.forward);
         }
     }
 
@@ -37,23 +40,24 @@ public class GroundSpinner : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void LateUpdate () {
+    // Update is called once per frame
+    void Update()
+    {
         if (go != null)
         {
-            Vector3 facing = go.transform.TransformDirection(Vector3.forward);
-            facing.y = 0;
+            Vector3 facing = go.transform.forward;
+            facing.x = 0;
 
-            float angle = Vector3.Angle(lastPoint, facing);
+            float angle = Vector3.Angle(facing, lastPoint);
+
+            if (Vector3.Cross(lastPoint, facing).x < 0)
+            {
+                angle *= -1;
+            }
 
             foreach (Transform child in childList)
             {
                 child.transform.Rotate(Vector3.up, angle);
-            }
-
-            if (Vector3.Cross(lastPoint, facing).y < 0)
-            {
-                angle *= -1;
             }
 
             activatee.Activate(angle);
@@ -61,6 +65,16 @@ public class GroundSpinner : MonoBehaviour {
             totalRotation += angle;
 
             lastPoint = facing;
+
+            go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, transform.position.z);
         }
-	}
+    }
+
+    void FixedUpdate()
+    {
+        if (go != null) {
+            Vector3 oppositeForce = -go.rigidbody.velocity;
+            go.rigidbody.AddForce(oppositeForce * 2);
+        }
+    }
 }

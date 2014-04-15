@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MovingPlatform : BaseActivatee
 {
-    public Transform startingPoint;
+    public Transform startPoint;
     public Transform endPoint;
     public float speed;
     public float waitTime;
@@ -18,13 +18,23 @@ public class MovingPlatform : BaseActivatee
 
     override public void Activate(float p_value)
     {
-        Debug.Log(p_value);
-        transform.position = Vector3.MoveTowards(transform.position, endPoint.position, p_value * Time.deltaTime);
+        if (p_value > 0)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPoint.position, p_value * Time.deltaTime);
+        }
+        else if (p_value < 0)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startPoint.position, -p_value * Time.deltaTime);
+        }
+        else
+        {
+            base.Activate(p_value);
+        }
     }
 
     void Update()
     {
-        if (isActivated && (startingPoint != null && endPoint != null))
+        if (isActivated && (startPoint != null && endPoint != null))
         {
             if (!hasReachedEnd)
             {
@@ -41,8 +51,8 @@ public class MovingPlatform : BaseActivatee
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, startingPoint.position, speed * Time.deltaTime);
-                if (transform.position == startingPoint.position)
+                transform.position = Vector3.MoveTowards(transform.position, startPoint.position, speed * Time.deltaTime);
+                if (transform.position == startPoint.position)
                 {
                     timePassed += Time.deltaTime;
                     if (timePassed >= waitTime)
