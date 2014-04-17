@@ -16,19 +16,15 @@ public class MovingPlatform : BaseActivatee
         hasReachedEnd = false;
     }
 
-    override public void Activate(float p_value)
+    override public void ActivateWithValue(float p_value)
     {
-        if (p_value > 0)
+        if (p_value >= 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPoint.position, p_value * Time.deltaTime);
         }
         else if (p_value < 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, startPoint.position, -p_value * Time.deltaTime);
-        }
-        else
-        {
-            base.Activate(p_value);
         }
     }
 
