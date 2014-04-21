@@ -28,12 +28,12 @@ public class GroundSpinner : MonoBehaviour
         go = null;
 
         directions = new SortedDictionary<rotationAxis, Vector3>();
-        directions[rotationAxis.X] = Vector3.forward;
-        directions[rotationAxis.Y] = Vector3.up;
-        directions[rotationAxis.Z] = Vector3.right;
-        //directions.Add(rotationAxis.X, Vector3.forward);
-        //directions.Add(rotationAxis.Y, Vector3.up);
-        //directions.Add(rotationAxis.Z, Vector3.right);
+        //directions[rotationAxis.X] = Vector3.forward;
+        //directions[rotationAxis.Y] = Vector3.up;
+        //directions[rotationAxis.Z] = Vector3.right;
+        directions.Add(rotationAxis.X, Vector3.right);
+        directions.Add(rotationAxis.Y, Vector3.up);
+        directions.Add(rotationAxis.Z, Vector3.forward);
 
         foreach (Transform child in transform)
         {
@@ -71,10 +71,10 @@ public class GroundSpinner : MonoBehaviour
     {
         if (go != null)
         {
+            //Debug.Log(string.Format("Direction[Axis {0}] X: {1} Y: {2} Z: {3}", (int)Axis, directions[Axis].x, directions[Axis].y, directions[Axis].z));
+
             Vector3 facing = go.transform.TransformDirection(directions[Axis]);
             facing[(int)Axis] = 0;
-
-            Debug.Log(string.Format("X: {0} Y: {1} Z: {2}", facing.x, facing.y, facing.z));
 
             float angle = Vector3.Angle(facing, lastPoint);
 
@@ -99,11 +99,16 @@ public class GroundSpinner : MonoBehaviour
             lastPoint = facing;
 
             Vector3 temp = go.transform.position;
-            temp[(int)Axis] = transform.position[(int)Axis];
+            if (Axis == rotationAxis.X)    //I don't like this, but it works.
+            {
+                temp[2] = transform.position[2];
+            }
+            else if (Axis == rotationAxis.Z)
+            {
+                temp[0] = transform.position[0];
+            }
 
             go.transform.position = temp;
-            //go.transform.position[(int)rotateAroundAxis] = transform.position[(int)rotateAroundAxis];
-            //go.transform.position = new Vector3(go.transform.position.x, go.transform.position.y, transform.position.z);
         }
     }
 
