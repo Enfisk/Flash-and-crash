@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MovingPlatform : BaseActivatee
 {
-    public Transform startPoint;
-    public Transform endPoint;
+    private Transform startPoint;
+    private Transform endPoint;
     public float speed;
     public float waitTime;
 
@@ -14,6 +14,28 @@ public class MovingPlatform : BaseActivatee
     void Start()
     {
         hasReachedEnd = false;
+        GameObject parent = transform.root.gameObject;
+
+        foreach (Transform child in parent.transform)
+        {
+            if (child.name == "startPoint")
+            {
+                startPoint = child;
+            }
+            else if (child.name == "endPoint")
+            {
+                endPoint = child;
+            }
+        }
+
+        if (startPoint == null)
+        {
+            Debug.Log(string.Format("startPoint not found: object {0}", name));
+        }
+        if (endPoint == null)
+        {
+            Debug.Log(string.Format("endPoint not found: object {0}", name));
+        }
     }
 
     override public void ActivateWithValue(float p_value)
