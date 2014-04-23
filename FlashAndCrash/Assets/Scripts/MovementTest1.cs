@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 [RequireComponent(typeof(Rigidbody))]
 public class MovementTest1 : MonoBehaviour
 {
-    public int deviceNumber = 0;
-    public int rotationMouse = 0;
+    public int deviceNumber;
+    public int rotationMouse;
     public float sensitivity = 1.0f;
     public float maxSpeed = 10.0f;
     private static bool hasIntialized = false;
@@ -40,10 +40,6 @@ public class MovementTest1 : MonoBehaviour
     private static extern void ManyMouse_Quit();
     [DllImport("TestApp")]
     private static extern int ManyMouse_PollEvent(ref ManyMouseEvent p_event);
-    [DllImport("TestApp")]
-    private static extern string ManyMouse_DriverName();
-    [DllImport("TestApp")]
-    private static extern string ManyMouse_DeviceName();
 
     // Use this for initialization
     void Start()
@@ -74,10 +70,12 @@ public class MovementTest1 : MonoBehaviour
                     {
                         if (mouseEvents.item == 0)  //Mouse X Axis
                         {
+                            //Debug.Log(string.Format("Device {0}, value {1}", mouseEvents.device, mouseEvents.value));
                             rigidbody.AddForce(mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
                         }
                         else if (mouseEvents.item == 1)    //Mouse Y Axis
                         {
+                            //Debug.Log(string.Format("Device {0}, value {1}", mouseEvents.device, mouseEvents.value));
                             rigidbody.AddForce(0, 0, -mouseEvents.value * sensitivity * Time.deltaTime);
                         }
                     }
@@ -89,6 +87,7 @@ public class MovementTest1 : MonoBehaviour
                         }
                     }
                 }
+               // Debug.Log("Stuff happened");
             }
         }
 
