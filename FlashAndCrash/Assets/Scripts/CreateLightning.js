@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var targetObject : GameObject;
+private var targetObject : GameObject;
 private var lineRenderer : LineRenderer;
 
 function Start() {
