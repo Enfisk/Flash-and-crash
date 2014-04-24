@@ -5,6 +5,7 @@ public class MovingPlatform : BaseActivatee
 {
     private Transform startPoint;
     private Transform endPoint;
+	public bool AutoActivate;
     public float speed;
     public float waitTime;
 
@@ -13,8 +14,12 @@ public class MovingPlatform : BaseActivatee
 
     void Start()
     {
+		if(AutoActivate) 
+		{
+			isActivated = true;
+		}
         hasReachedEnd = false;
-        GameObject parent = transform.root.gameObject;
+        GameObject parent = transform.parent.gameObject;
 
         foreach (Transform child in parent.transform)
         {
