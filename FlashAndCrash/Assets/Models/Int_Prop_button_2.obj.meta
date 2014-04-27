@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 26b964b939f9fb842802599a628f890c
+guid: 32790465484c68b4e9eb54d7214ecb99
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Box001
-    100002: Box002
-    100004: //RootNode
-    400000: Box001
-    400002: Box002
-    400004: //RootNode
-    2300000: Box001
-    2300002: Box002
-    3300000: Box001
-    3300002: Box002
-    4300000: Box001
-    4300002: Box002
+    100000: //RootNode
+    100002: rectangular_button_2:Box001
+    100004: rectangular_button_2:Box002
+    400000: //RootNode
+    400002: rectangular_button_2:Box001
+    400004: rectangular_button_2:Box002
+    2300000: rectangular_button_2:Box001
+    2300002: rectangular_button_2:Box002
+    3300000: rectangular_button_2:Box001
+    3300002: rectangular_button_2:Box002
+    4300000: rectangular_button_2:Box001
+    4300002: rectangular_button_2:Box002
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -34,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .0500000007
+    globalScale: .0299999993
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
