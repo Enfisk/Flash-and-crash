@@ -92,5 +92,6 @@ public class MovementTest1 : MonoBehaviour
         }
 
         rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxSpeed);
+		//Debug.Log(string.Format ("X-Speed: {0} Y-Speed: {1} Z-Speed: {2} ",rigidbody.velocity.x,rigidbody.velocity.y, rigidbody.velocity.z) );
     }
 }
