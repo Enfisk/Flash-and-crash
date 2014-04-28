@@ -14,7 +14,7 @@ public class MovingPlatform : BaseActivatee
     void Start()
     {
         hasReachedEnd = false;
-        GameObject parent = transform.root.gameObject;
+        GameObject parent = transform.parent.gameObject;
 
         foreach (Transform child in parent.transform)
         {

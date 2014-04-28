@@ -6,7 +6,7 @@ public class HoldButton : MonoBehaviour {
 	
     void OnTriggerEnter(Collider p_other)
     {
-        if (p_other.tag == "ball1" || p_other.tag == "ball2")
+        if (p_other.tag == "tesla" || p_other.tag == "bucket")
         {
             foreach (BaseActivatee activatee in activatees)
             {
@@ -17,7 +17,7 @@ public class HoldButton : MonoBehaviour {
 
     void OnTriggerExit(Collider p_other)
     {
-        if (p_other.tag == "ball1" || p_other.tag == "ball2")
+        if (p_other.tag == "tesla" || p_other.tag == "bucket")
         {
             foreach (BaseActivatee activatee in activatees)
             {
