@@ -16,7 +16,6 @@ public class GroundSpinner : MonoBehaviour
     private List<Transform> childList = new List<Transform>();
     private GameObject go;
     private float totalRotation = 0;
-    //private int test = 0;
     private Vector3 lastPoint;
     private SortedDictionary<rotationAxis, Vector3> directions;
 
@@ -28,30 +27,22 @@ public class GroundSpinner : MonoBehaviour
         go = null;
 
         directions = new SortedDictionary<rotationAxis, Vector3>();
-        //directions[rotationAxis.X] = Vector3.forward;
-        //directions[rotationAxis.Y] = Vector3.up;
-        //directions[rotationAxis.Z] = Vector3.right;
         directions.Add(rotationAxis.X, Vector3.right);
         directions.Add(rotationAxis.Y, Vector3.up);
         directions.Add(rotationAxis.Z, Vector3.forward);
 
         foreach (Transform child in transform)
         {
-            childList.Add(child);
+            if (child.name.Contains("spinners_2")) {
+                Debug.Log("Added");
+                childList.Add(child);
+            }
         }
-
-        //for (int i = 0; i < 2; ++i)
-        //{
-        //    if (directions[Axis][i] != 0)
-        //    {
-        //        test = i;
-        //    }
-        //}
     }
 
     void OnTriggerEnter(Collider p_other)
     {
-        if (go == null && p_other.gameObject.tag.Contains("ball"))
+        if (go == null && (p_other.gameObject.tag == "tesla" || p_other.gameObject.tag == "bucket"))
         {
             go = p_other.gameObject;
             lastPoint = go.transform.TransformDirection(directions[Axis]);
@@ -71,8 +62,6 @@ public class GroundSpinner : MonoBehaviour
     {
         if (go != null)
         {
-            //Debug.Log(string.Format("Direction[Axis {0}] X: {1} Y: {2} Z: {3}", (int)Axis, directions[Axis].x, directions[Axis].y, directions[Axis].z));
-
             Vector3 facing = go.transform.TransformDirection(directions[Axis]);
             facing[(int)Axis] = 0;
 
