@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\CameraScript_Old.cs" />
      <Compile Include="Assets\Scripts\FinishArea.cs" />
      <Compile Include="Assets\Scripts\FollowScript.cs" />
+     <Compile Include="Assets\Scripts\GeneralPurposeScript.cs" />
      <Compile Include="Assets\Scripts\MovementTest1.cs" />
      <Compile Include="Assets\Scripts\PinballFlipper.cs" />
      <Compile Include="Assets\Scripts\Respawn\KillPlane.cs" />
