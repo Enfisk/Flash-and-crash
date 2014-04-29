@@ -10,7 +10,7 @@ public class Respawn : MonoBehaviour {
         lastSpawnPoint = GameObject.Find("Spawn Point");
     }
 
-    public void Spawn()
+    public void Respawn()
     {
         if (lastSpawnPoint == null)
         {
@@ -18,7 +18,6 @@ public class Respawn : MonoBehaviour {
         }
 
         transform.position = lastSpawnPoint.transform.position + offset;
-        rigidbody.velocity = new Vector3(0, 0, 0);
-        rigidbody.angularVelocity = new Vector3(0, 0, 0);
+        //transform.position = new Vector3(lastSpawnPoint.transform.position.x, lastSpawnPoint.transform.position.y, lastSpawnPoint.transform.position.z);
     }
 }

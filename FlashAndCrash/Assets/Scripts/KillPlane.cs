@@ -4,9 +4,9 @@ using System.Collections;
 public class KillPlane : MonoBehaviour {
     void OnTriggerEnter(Collider p_thing)
     {
-        if (p_thing.GetComponent(typeof(Respawn)))
+        if (p_thing.GetComponent("Respawn"))
         {
-            p_thing.SendMessage("Spawn", SendMessageOptions.DontRequireReceiver);
+            p_thing.SendMessage("Respawn", SendMessageOptions.DontRequireReceiver);
         }
     }
 }
