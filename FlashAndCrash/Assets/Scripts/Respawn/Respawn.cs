@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections;
 
-public class Respawn : MonoBehaviour {
+public class Respawn : MonoBehaviour
+{
     public GameObject lastSpawnPoint;
     public Vector3 offset;
 
@@ -10,7 +11,7 @@ public class Respawn : MonoBehaviour {
         lastSpawnPoint = GameObject.Find("Spawn Point");
     }
 
-    public void Respawn()
+    public void Spawn()
     {
         if (lastSpawnPoint == null)
         {
@@ -18,6 +19,7 @@ public class Respawn : MonoBehaviour {
         }
 
         transform.position = lastSpawnPoint.transform.position + offset;
-        //transform.position = new Vector3(lastSpawnPoint.transform.position.x, lastSpawnPoint.transform.position.y, lastSpawnPoint.transform.position.z);
+        rigidbody.velocity = new Vector3(0, 0, 0);
+        rigidbody.angularVelocity = new Vector3(0, 0, 0);
     }
 }
