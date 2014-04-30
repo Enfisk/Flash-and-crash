@@ -2,27 +2,14 @@
 using System.Collections;
 
 public class FinishArea : MonoBehaviour {
-    private GameObject winner;
-	// Use this for initialization
-	void Start () {
-        winner = null;
-	}
-
-    void OnTriggerEnter(Collider p_thing)
+    void OnTriggerEnter(Collider p_thing) 
     {
-        winner = p_thing.gameObject;
-    }
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnGUI()
-    {
-        if (winner != null)
+        string name = p_thing.name;
+        GameObject FinishText = GameObject.Find(name + " GUI/Win Text");
+        if (FinishText)
         {
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 100, 20), "WINNAR!");
+            FinishText.transform.localPosition = new Vector3(FinishText.transform.localPosition.x, FinishText.transform.localPosition.y, FinishText.transform.localPosition.z + 6);
+            gameObject.SetActive(false);
         }
     }
 }
