@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MovingPlatform : BaseActivatee
@@ -29,6 +30,8 @@ public class MovingPlatform : BaseActivatee
                 m_waypoints.Add(transform.parent.GetChild(i));
             }
         }
+
+        m_waypoints = m_waypoints.OrderBy(go => go.name).ToList();
         m_nextPoint = m_waypoints[0];
     }
 
