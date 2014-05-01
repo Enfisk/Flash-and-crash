@@ -12,6 +12,7 @@
 /*.pidb
 /*.booproj
 *.unityproj
-*.unityproj
-*.unityproj
 *.csproj
+*.sln
+*.suo
+*.userprefs
