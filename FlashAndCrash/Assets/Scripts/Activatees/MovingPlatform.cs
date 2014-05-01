@@ -1,90 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
+[RequireComponent(typeof(Rigidbody))]
 public class MovingPlatform : BaseActivatee
 {
-    private Transform startPoint;
-    private Transform endPoint;
-	public bool AutoActivate;
-    public float speed;
-    public float waitTime;
+    private List<Transform> m_waypoints = new List<Transform>();
+    private Transform m_nextPoint;
+    private Vector3 m_movementStep;
+	public bool m_AutoActivate;
+    public float m_speed;
+    public float m_waitTime;
 
-    private bool hasReachedEnd;
-    private float timePassed = 0.0f;
+    private float m_timePassed = 0.0f;
 
     void Start()
     {
-		if(AutoActivate) 
+		if(m_AutoActivate) 
 		{
 			isActivated = true;
 		}
-        hasReachedEnd = false;
-        GameObject parent = transform.parent.gameObject;
 
-        foreach (Transform child in parent.transform)
+        for (int i = 0; i < transform.parent.childCount; ++i)
         {
-            if (child.name == "startPoint")
+
+            if (transform.parent.GetChild(i).name.Contains("Waypoint"))
             {
-                startPoint = child;
-            }
-            else if (child.name == "endPoint")
-            {
-                endPoint = child;
+                m_waypoints.Add(transform.parent.GetChild(i));
             }
         }
-
-        if (startPoint == null)
-        {
-            Debug.Log(string.Format("startPoint not found: object {0}", name));
-        }
-        if (endPoint == null)
-        {
-            Debug.Log(string.Format("endPoint not found: object {0}", name));
-        }
+        m_nextPoint = m_waypoints[0];
     }
 
-    override public void ActivateWithValue(float p_value)
+    void FixedUpdate()
     {
-        if (p_value >= 0)
+        if (isActivated && m_waypoints.Count >= 2)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPoint.position, p_value * Time.deltaTime);
-        }
-        else if (p_value < 0)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPoint.position, -p_value * Time.deltaTime);
-        }
-    }
-
-    void Update()
-    {
-        if (isActivated && (startPoint != null && endPoint != null))
-        {
-            if (!hasReachedEnd)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, endPoint.position, speed * Time.deltaTime);
-                if (transform.position == endPoint.position)
+            m_movementStep = Vector3.MoveTowards(rigidbody.position, m_nextPoint.position, m_speed * Time.deltaTime);
+                rigidbody.MovePosition(m_movementStep);
+                if (rigidbody.position == m_nextPoint.position)
                 {
-                    timePassed += Time.deltaTime;
-                    if (timePassed >= waitTime)
+                    m_timePassed += Time.deltaTime;
+                    if (m_timePassed >= m_waitTime)
                     {
-                        hasReachedEnd = true;
-                        timePassed = 0.0f;
+                        int index = m_waypoints.FindIndex(e => e.transform.position == rigidbody.position);
+                        m_nextPoint = index + 1 == m_waypoints.Count ? m_waypoints[0] : m_waypoints[index + 1];
+                        m_timePassed = 0.0f;
                     }
                 }
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, startPoint.position, speed * Time.deltaTime);
-                if (transform.position == startPoint.position)
-                {
-                    timePassed += Time.deltaTime;
-                    if (timePassed >= waitTime)
-                    {
-                        hasReachedEnd = false;
-                        timePassed = 0.0f;
-                    }
-                }
-            }
         }
     }
 }

@@ -46,7 +46,7 @@ public class MovementTest1 : MonoBehaviour
     {
         if (!hasIntialized)
         {
-            Debug.Log(ManyMouse_Init());
+            Debug.Log("ManyMouse Init: " + ManyMouse_Init());
             hasIntialized = true;
         }
 
