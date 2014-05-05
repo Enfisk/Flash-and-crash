@@ -7,10 +7,11 @@ using System.Runtime.InteropServices;
 public class MovementTest1 : MonoBehaviour
 {
     public int deviceNumber;
-    public int rotationMouse;
     public float sensitivity = 1.0f;
     public float maxSpeed = 10.0f;
     private static bool hasIntialized = false;
+
+    private Respawn respawnScript;
 
     ManyMouseEvent mouseEvents = new ManyMouseEvent();
 
@@ -50,6 +51,7 @@ public class MovementTest1 : MonoBehaviour
             hasIntialized = true;
         }
 
+        respawnScript = (Respawn) gameObject.GetComponent(typeof(Respawn));
     }
 
     void OnApplicationQuit()
@@ -64,34 +66,23 @@ public class MovementTest1 : MonoBehaviour
             Debug.Log("if hasInitialized, deviceNumber " + deviceNumber);
             while (ManyMouse_PollEvent(ref mouseEvents) != 0)
             {
-                if (mouseEvents.type == ManyMouseEventType.MANYMOUSE_EVENT_RELMOTION)
+                if (mouseEvents.type == ManyMouseEventType.MANYMOUSE_EVENT_RELMOTION && !respawnScript.isRespawning)
                 {
                     if (deviceNumber == mouseEvents.device)
                     {
                         if (mouseEvents.item == 0)  //Mouse X Axis
                         {
-                            //Debug.Log(string.Format("Device {0}, value {1}", mouseEvents.device, mouseEvents.value));
                             rigidbody.AddForce(mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
                         }
                         else if (mouseEvents.item == 1)    //Mouse Y Axis
                         {
-                            //Debug.Log(string.Format("Device {0}, value {1}", mouseEvents.device, mouseEvents.value));
                             rigidbody.AddForce(0, 0, -mouseEvents.value * sensitivity * Time.deltaTime);
                         }
                     }
-                    else if (rotationMouse == mouseEvents.device)
-                    {
-                        if (mouseEvents.item == 0)
-                        {
-                            transform.Rotate(0, mouseEvents.value, 0, Space.Self);
-                        }
-                    }
                 }
-               // Debug.Log("Stuff happened");
             }
         }
 
         rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, maxSpeed);
-		//Debug.Log(string.Format ("X-Speed: {0} Y-Speed: {1} Z-Speed: {2} ",rigidbody.velocity.x,rigidbody.velocity.y, rigidbody.velocity.z) );
     }
 }
