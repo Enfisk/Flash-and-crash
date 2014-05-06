@@ -10,6 +10,7 @@ public class MovementTest1 : MonoBehaviour
     public float sensitivity = 1.0f;
     public float maxSpeed = 10.0f;
     private static bool hasIntialized = false;
+    private bool isGrounded;
 
     private Respawn respawnScript;
 
@@ -59,6 +60,17 @@ public class MovementTest1 : MonoBehaviour
         ManyMouse_Quit();
     }
 
+    void Update()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 2)) {
+            isGrounded = true;
+        }
+
+        else {
+            isGrounded = false;
+        }
+    }
+
     void FixedUpdate()
     {
         if (hasIntialized)
@@ -66,7 +78,7 @@ public class MovementTest1 : MonoBehaviour
             Debug.Log("if hasInitialized, deviceNumber " + deviceNumber);
             while (ManyMouse_PollEvent(ref mouseEvents) != 0)
             {
-                if (mouseEvents.type == ManyMouseEventType.MANYMOUSE_EVENT_RELMOTION && !respawnScript.isRespawning)
+                if (mouseEvents.type == ManyMouseEventType.MANYMOUSE_EVENT_RELMOTION && !respawnScript.isRespawning && isGrounded)
                 {
                     if (deviceNumber == mouseEvents.device)
                     {

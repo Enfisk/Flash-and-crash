@@ -2,7 +2,7 @@
 using System.Collections;
 
 public abstract class BaseActivatee : MonoBehaviour {
-    protected bool isActivated { get; set; }
+    [HideInInspector] public bool isActivated { get; set; }
 
     public virtual void ActivateWithValue(float p_value = 0.0f) { isActivated = true; }
     public virtual void Activate() { isActivated = true; }
