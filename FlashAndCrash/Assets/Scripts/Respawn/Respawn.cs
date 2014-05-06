@@ -26,11 +26,12 @@ public class Respawn : MonoBehaviour
 
         //Play Despawn animation here
 
+        rigidbody.velocity = new Vector3(0, 0, 0);
+        rigidbody.angularVelocity = new Vector3(0, 0, 0);
+
         yield return new WaitForSeconds(despawnDelay);
 
         transform.position = lastSpawnPoint.transform.position + offset;
-        rigidbody.velocity = new Vector3(0, 0, 0);
-        rigidbody.angularVelocity = new Vector3(0, 0, 0);
 
         //Play respawn animation here
         yield return new WaitForSeconds(respawnDelay);
