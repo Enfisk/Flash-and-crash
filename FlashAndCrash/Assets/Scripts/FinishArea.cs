@@ -19,7 +19,7 @@ public class FinishArea : MonoBehaviour {
     void OnGUI()    //Incredibly much placeholder. Remove later.
     {
         if (Globals.gameFinished) {
-            GUI.Label(new Rect(100, 100, 150, 40), "Press R to restart!");
+            GUI.Label(new Rect(100, 100, 150, 40), "Press Numpad 9 to restart!");
         }
     }
 }

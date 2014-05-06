@@ -10352,12 +10352,13 @@ GameObject:
   - 4: {fileID: 311724441}
   - 114: {fileID: 311724440}
   - 114: {fileID: 311724442}
+  - 114: {fileID: 311724443}
   m_Layer: 0
   m_Name: General_stuff_object
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &311724440
 MonoBehaviour:
@@ -10377,7 +10378,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 311724439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.2903461, y: -114.262566, z: 80.0106583}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10403,6 +10404,17 @@ MonoBehaviour:
   - {fileID: 853033872}
   - {fileID: 700794237}
   spriteRenderer: {fileID: 1947077407}
+--- !u!114 &311724443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 311724439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb156df6b7bf743be136986fbb1052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &313321388
 GameObject:
   m_ObjectHideFlags: 0
@@ -15597,7 +15609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 462900521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: .5, z: -1.99999988}
+  m_LocalPosition: {x: -1, y: .5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 347817011}
@@ -21485,11 +21497,11 @@ Transform:
   - {fileID: 991475278}
   - {fileID: 117929438}
   - {fileID: 1650574629}
-  - {fileID: 1635446463}
-  - {fileID: 715273231}
-  - {fileID: 2021043074}
   - {fileID: 1820632765}
+  - {fileID: 715273231}
+  - {fileID: 1635446463}
   - {fileID: 796444115}
+  - {fileID: 2021043074}
   - {fileID: 114604020}
   - {fileID: 578306475}
   - {fileID: 957663406}
@@ -41005,8 +41017,8 @@ Transform:
   - {fileID: 626125728}
   - {fileID: 1579430441}
   - {fileID: 2011575384}
-  - {fileID: 2032738124}
   - {fileID: 774987106}
+  - {fileID: 2032738124}
   - {fileID: 213922920}
   - {fileID: 1683339726}
   - {fileID: 284254087}
@@ -49880,10 +49892,10 @@ Transform:
   - {fileID: 1769553694}
   - {fileID: 1936583091}
   - {fileID: 1555606048}
-  - {fileID: 819037966}
-  - {fileID: 1680523287}
   - {fileID: 451152028}
   - {fileID: 459911910}
+  - {fileID: 819037966}
+  - {fileID: 1680523287}
   - {fileID: 1586075530}
   - {fileID: 1333062535}
   - {fileID: 2014738484}

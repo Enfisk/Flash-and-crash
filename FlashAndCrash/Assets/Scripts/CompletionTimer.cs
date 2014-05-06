@@ -16,6 +16,11 @@ public class CompletionTimer : BaseActivatee {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Globals.gameFinished && isActivated)
+        {
+            base.Deactivate();
+        }
+
         if (isActivated)
         {
             timePassed += Time.deltaTime;
