@@ -2,19 +2,44 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 public class GeneralPurposeScript : MonoBehaviour {
     private CompletionTimer timer;
 
+    [DllImport("TestApp")]
+    private static extern int ManyMouse_Init();
+    [DllImport("TestApp")]
+    private static extern void ManyMouse_Quit();
+
 	// Use this for initialization
 	void Start () {
+        if (!Globals.ManyMouse_Initialized)
+        {
+            ManyMouse_Init();
+            Globals.ManyMouse_Initialized = true;
+        }
+
         timer = (CompletionTimer) gameObject.GetComponent(typeof(CompletionTimer));
         Screen.lockCursor = true;
 	}
 
-    void Awake()
+    void OnDestroy()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Globals.ManyMouse_Initialized)
+        {
+            ManyMouse_Quit();
+            Globals.ManyMouse_Initialized = false;
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        if (Globals.ManyMouse_Initialized)
+        {
+            ManyMouse_Quit();
+            Globals.ManyMouse_Initialized = false;
+        }
     }
 
     void Update()
@@ -34,7 +59,7 @@ public class GeneralPurposeScript : MonoBehaviour {
         if (/*Globals.gameFinished &&*/ Input.GetKeyDown(KeyCode.Keypad9))
         {
             Globals.gameFinished = false;
-            Application.LoadLevel("Level_1");
+            Application.LoadLevel(0);
         }
 
         if (timer && timer.isActivated)

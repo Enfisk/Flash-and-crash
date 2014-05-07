@@ -9,7 +9,6 @@ public class MovementTest1 : MonoBehaviour
     public int deviceNumber;
     public float sensitivity = 1.0f;
     public float maxSpeed = 10.0f;
-    private static bool hasIntialized = false;
     private bool isGrounded;
 
     private Respawn respawnScript;
@@ -37,27 +36,12 @@ public class MovementTest1 : MonoBehaviour
     };
 
     [DllImport("TestApp")]
-    private static extern int ManyMouse_Init();
-    [DllImport("TestApp")]
-    private static extern void ManyMouse_Quit();
-    [DllImport("TestApp")]
     private static extern int ManyMouse_PollEvent(ref ManyMouseEvent p_event);
 
     // Use this for initialization
     void Start()
     {
-        if (!hasIntialized)
-        {
-            Debug.Log("ManyMouse Init: " + ManyMouse_Init());
-            hasIntialized = true;
-        }
-
         respawnScript = (Respawn) gameObject.GetComponent(typeof(Respawn));
-    }
-
-    void OnApplicationQuit()
-    {
-        ManyMouse_Quit();
     }
 
     void Update()
@@ -73,7 +57,7 @@ public class MovementTest1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (hasIntialized)
+        if (Globals.ManyMouse_Initialized)
         {
             Debug.Log("if hasInitialized, deviceNumber " + deviceNumber);
             while (ManyMouse_PollEvent(ref mouseEvents) != 0)
