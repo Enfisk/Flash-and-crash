@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 [RequireComponent(typeof(Rigidbody))]
 public class MovementTest1 : MonoBehaviour
 {
+    public Inversion invertX, invertZ;
     public int deviceNumber;
     public float sensitivity = 1.0f;
     public float maxSpeed = 10.0f;
@@ -24,6 +25,12 @@ public class MovementTest1 : MonoBehaviour
         MANYMOUSE_EVENT_DISCONNECT,
         MANYMOUSE_EVENT_MAX
     };
+
+    public enum Inversion
+    {
+        Yes = -1,
+        No = 1
+    }
 
     public struct ManyMouseEvent
     {
@@ -68,11 +75,11 @@ public class MovementTest1 : MonoBehaviour
                     {
                         if (mouseEvents.item == 0)  //Mouse X Axis
                         {
-                            rigidbody.AddForce(-mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
+                            rigidbody.AddForce((int)invertX * mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
                         }
                         else if (mouseEvents.item == 1)    //Mouse Y Axis
                         {
-                            rigidbody.AddForce(0, 0, -mouseEvents.value * sensitivity * Time.deltaTime);
+                            rigidbody.AddForce(0, 0, (int)invertZ * -mouseEvents.value * sensitivity * Time.deltaTime);
                         }
                     }
                 }
