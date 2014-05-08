@@ -68,7 +68,7 @@ public class MovementTest1 : MonoBehaviour
                     {
                         if (mouseEvents.item == 0)  //Mouse X Axis
                         {
-                            rigidbody.AddForce(mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
+                            rigidbody.AddForce(-mouseEvents.value * sensitivity * Time.deltaTime, 0, 0);
                         }
                         else if (mouseEvents.item == 1)    //Mouse Y Axis
                         {
