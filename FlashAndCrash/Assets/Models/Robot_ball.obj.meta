@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 5e9dd456826fd0c4ca06d3687dbdcecf
+guid: edeea5ff7073c5f4ebb3af42fb8dca21
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Cylinder001
-    100002: //RootNode
-    400000: Cylinder001
-    400002: //RootNode
-    2300000: Cylinder001
-    3300000: Cylinder001
-    4300000: Cylinder001
+    100000: //RootNode
+    100002: robot_ball1:pCube1
+    400000: //RootNode
+    400002: robot_ball1:pCube1
+    2300000: robot_ball1:pCube1
+    3300000: robot_ball1:pCube1
+    4300000: robot_ball1:pCube1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -29,7 +29,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .0500000007
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -47,7 +47,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
@@ -61,6 +61,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 
