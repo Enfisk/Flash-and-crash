@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: edeea5ff7073c5f4ebb3af42fb8dca21
+guid: f34ca066f938f0c4b80e0812478da6c8
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: robot_ball1:pCube1
-    400000: //RootNode
-    400002: robot_ball1:pCube1
-    2300000: robot_ball1:pCube1
-    3300000: robot_ball1:pCube1
-    4300000: robot_ball1:pCube1
+    100000: pCube1
+    100002: //RootNode
+    400000: pCube1
+    400002: //RootNode
+    2300000: pCube1
+    3300000: pCube1
+    4300000: pCube1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -29,7 +29,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .100000001
+    globalScale: .300000012
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: edeea5ff7073c5f4ebb3af42fb8dca21
+guid: 30aeceac2494e5c4a80b731f5a27def5
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: robot_ball1:pCube1
+    100002: sd_prop_ramp_2:Box001
     400000: //RootNode
-    400002: robot_ball1:pCube1
-    2300000: robot_ball1:pCube1
-    3300000: robot_ball1:pCube1
-    4300000: robot_ball1:pCube1
+    400002: sd_prop_ramp_2:Box001
+    2300000: sd_prop_ramp_2:Box001
+    3300000: sd_prop_ramp_2:Box001
+    4300000: sd_prop_ramp_2:Box001
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -29,7 +29,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .100000001
+    globalScale: .200000003
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

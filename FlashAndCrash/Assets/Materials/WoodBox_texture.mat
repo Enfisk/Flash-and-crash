@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player2_Blue
-  m_Shader: {fileID: 11, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: WoodBox_texture
+  m_Shader: {fileID: 2, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,28 +17,17 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b2b922be21defc0459c3dfef6cf742a0, type: 3}
+          m_Texture: {fileID: 2800000, guid: 690a53414cd39214bbd5f75f4accd0a5, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: c7cd4cf399981e040bc6dd34a260d8ed, type: 3}
+          m_Texture: {fileID: 2800000, guid: 5bedba2614231a349a9f3ccf0ab5119a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Illum
-        second:
-          m_Texture: {fileID: 2800000, guid: 01f66e3e91e1a7c43a4170016c2b47c9, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-    m_Floats:
-      data:
-        first:
-          name: _EmissionLM
-        second: -0
+    m_Floats: {}
     m_Colors:
       data:
         first:
