@@ -5,7 +5,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 public class GeneralPurposeScript : MonoBehaviour {
-    private CompletionTimer timer;
+    //private CompletionTimer timer;
 
     [DllImport("TestApp")]
     private static extern int ManyMouse_Init();
@@ -20,7 +20,7 @@ public class GeneralPurposeScript : MonoBehaviour {
             Globals.ManyMouse_Initialized = true;
         }
 
-        timer = (CompletionTimer) gameObject.GetComponent(typeof(CompletionTimer));
+        //timer = (CompletionTimer) gameObject.GetComponent(typeof(CompletionTimer));
         Screen.lockCursor = true;
 	}
 
@@ -62,9 +62,9 @@ public class GeneralPurposeScript : MonoBehaviour {
             Application.LoadLevel(0);
         }
 
-        if (timer && timer.isActivated)
-        {
-            Debug.Log(timer.ToString());
-        }
+        //if (timer && timer.isActivated)
+        //{
+        //    Debug.Log(timer.ToString());
+        //}
     }
 }
