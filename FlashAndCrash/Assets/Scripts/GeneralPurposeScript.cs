@@ -62,6 +62,11 @@ public class GeneralPurposeScript : MonoBehaviour {
             Application.LoadLevel(0);
         }
 
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            Application.CaptureScreenshot("Screenshot.png", 2);
+        }
+
         //if (timer && timer.isActivated)
         //{
         //    Debug.Log(timer.ToString());
