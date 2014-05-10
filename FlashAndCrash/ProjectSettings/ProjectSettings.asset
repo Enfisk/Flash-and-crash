@@ -155,7 +155,16 @@ PlayerSettings:
   ps3TrialMode: 0
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: 
+    2: 
+    4: 
+    7: 
+    11: 
+    12: 
+    14: 
+    15: 
+    16: 
   metroPackageName: Unity Projects
   metroPackageLogo: 
   metroPackageVersion: 
