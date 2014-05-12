@@ -69,6 +69,19 @@ public class GeneralPurposeScript : MonoBehaviour {
             screenshotManager.TakeScreenshot();
         }
 
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            if (screenshotManager.ScreenshotMode)
+            {
+                screenshotManager.ExitScreenshotMode();
+            }
+
+            else
+            {
+                screenshotManager.EnterScreenshotMode();
+            }
+        }
+
         //if (timer && timer.isActivated)
         //{
         //    Debug.Log(timer.ToString());
