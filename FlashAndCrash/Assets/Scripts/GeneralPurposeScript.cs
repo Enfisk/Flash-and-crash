@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 public class GeneralPurposeScript : MonoBehaviour {
     //private CompletionTimer timer;
+    private ScreenshotManager screenshotManager;
 
     [DllImport("TestApp")]
     private static extern int ManyMouse_Init();
@@ -22,6 +23,7 @@ public class GeneralPurposeScript : MonoBehaviour {
 
         //timer = (CompletionTimer) gameObject.GetComponent(typeof(CompletionTimer));
         Screen.lockCursor = true;
+        screenshotManager = (ScreenshotManager)gameObject.GetComponent(typeof(ScreenshotManager));
 	}
 
     void OnDestroy()
@@ -64,7 +66,7 @@ public class GeneralPurposeScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
-            Application.CaptureScreenshot("Screenshot.png", 2);
+            screenshotManager.TakeScreenshot();
         }
 
         //if (timer && timer.isActivated)
