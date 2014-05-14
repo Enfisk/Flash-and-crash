@@ -28,17 +28,22 @@ public class ScreenshotManager : MonoBehaviour {
         fileCount = dir.GetFiles("Screenshot_*.png").Length;
 
         ScreenshotMode = false;
+	}
+
+    void Start()
+    {
         mainCamera = Camera.main.gameObject;
         baseViewport = Camera.main.rect;
         baseRotation = mainCamera.transform.rotation;
         basePosition = mainCamera.transform.position;
         cameraFollowScript = (CameraScript)mainCamera.GetComponent(typeof(CameraScript));
-	}
+    }
 
     void Update()
     {
         if (ScreenshotMode)     //Fuck this shit. Looks so insanely bad.
         {
+            #region Input
             if (Input.GetKey(KeyCode.W))
             {
                 mainCamera.transform.Translate(transform.forward * normalMovespeed * Time.deltaTime);
@@ -92,6 +97,7 @@ public class ScreenshotManager : MonoBehaviour {
             {
                 normalMovespeed /= sprintMultiplier;
             }
+            #endregion // All input for screenshot mode
         }
     }
 

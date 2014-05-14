@@ -10,7 +10,7 @@ public class CompletionTimer : BaseActivatee {
     }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         timePassed = 0.0f;
 	}
 	

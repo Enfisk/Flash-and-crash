@@ -8,11 +8,15 @@ public class GeneralPurposeScript : MonoBehaviour {
     private ScreenshotManager screenshotManager;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //timer = (CompletionTimer) gameObject.GetComponent(typeof(CompletionTimer));
         Screen.lockCursor = true;
-        screenshotManager = (ScreenshotManager)gameObject.GetComponent(typeof(ScreenshotManager));
 	}
+
+    void Start()
+    {
+        screenshotManager = (ScreenshotManager)gameObject.GetComponent(typeof(ScreenshotManager));
+    }
 
     void Update()
     {
