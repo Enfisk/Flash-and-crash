@@ -5,6 +5,8 @@ using System.IO;
 
 public class ScreenshotManager : MonoBehaviour {
     [HideInInspector] public bool ScreenshotMode { get; set; }
+    public float normalMovespeed;
+    public float sprintMultiplier;
 
     private DirectoryInfo dir;
     private int fileCount;
@@ -26,42 +28,47 @@ public class ScreenshotManager : MonoBehaviour {
         fileCount = dir.GetFiles("Screenshot_*.png").Length;
 
         ScreenshotMode = false;
+	}
+
+    void Start()
+    {
         mainCamera = Camera.main.gameObject;
         baseViewport = Camera.main.rect;
         baseRotation = mainCamera.transform.rotation;
         basePosition = mainCamera.transform.position;
         cameraFollowScript = (CameraScript)mainCamera.GetComponent(typeof(CameraScript));
-	}
+    }
 
     void Update()
     {
         if (ScreenshotMode)     //Fuck this shit. Looks so insanely bad.
         {
+            #region Input
             if (Input.GetKey(KeyCode.W))
             {
-                mainCamera.transform.Translate(transform.forward * 10.0f * Time.deltaTime);
+                mainCamera.transform.Translate(transform.forward * normalMovespeed * Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                mainCamera.transform.Translate(-transform.forward * 10.0f * Time.deltaTime);
+                mainCamera.transform.Translate(-transform.forward * normalMovespeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                mainCamera.transform.Translate(-transform.right * 10.0f * Time.deltaTime);
+                mainCamera.transform.Translate(-transform.right * normalMovespeed * Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                mainCamera.transform.Translate(transform.right * 10.0f * Time.deltaTime);
+                mainCamera.transform.Translate(transform.right * normalMovespeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.Q))
             {
-                mainCamera.transform.position += transform.up * 10.0f * Time.deltaTime;
+                mainCamera.transform.position += transform.up * normalMovespeed * Time.deltaTime;
             }
             else if (Input.GetKey(KeyCode.E))
             {
-                mainCamera.transform.position += -transform.up * 10.0f * Time.deltaTime;
+                mainCamera.transform.position += -transform.up * normalMovespeed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.Keypad4))
@@ -81,6 +88,16 @@ public class ScreenshotManager : MonoBehaviour {
             {
                 mainCamera.transform.Rotate(60 * Time.deltaTime, 0, 0);
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                normalMovespeed *= sprintMultiplier;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+            {
+                normalMovespeed /= sprintMultiplier;
+            }
+            #endregion // All input for screenshot mode
         }
     }
 
