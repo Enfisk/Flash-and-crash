@@ -6,7 +6,7 @@ public class FlickeringLight : MonoBehaviour {
     public float flickeringTime = 0.5f;     //The total time where the light flickers
     public float timeBetweenFlickers = 0.5f;
     [Range(0, 8)] public float minIntensity = 0.0f;
-    [Range(0, 8)] public float maxIntensity = 8.0f;
+    [Range(0, 8)] public float maxIntensity = 1.0f;
 
     private float originalIntensity;
     private bool flickering = false;
