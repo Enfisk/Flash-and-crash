@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(FlickeringLight))]
 public class PlayerCollision : MonoBehaviour {
     private MultisoundEmitter soundScript;
     private PlayerMovement movementScript;

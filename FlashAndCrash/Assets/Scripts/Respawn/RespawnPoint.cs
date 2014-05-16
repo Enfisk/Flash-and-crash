@@ -1,20 +1,27 @@
 ﻿﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RespawnPoint : MonoBehaviour
 {
-    [HideInInspector]
-    public Light[] lights;
-    private Quaternion startRotation;
+    //public Dictionary<string, Light> lights;
+    //private Quaternion startRotation;
+
+    //void Awake()
+    //{
+    //    lights = new Dictionary<string, Light>();
+    //}
 
     void Start()
     {
-        lights = GetComponentsInChildren<Light>();
+        //int playerCount = 1;
+        //foreach (Light light in GetComponentsInChildren<Light>())
+        //{
+        //    lights.Add(string.Format("Player_{0}", playerCount), light);
+        //    ++playerCount;
+        //}
 
-        if (lights.Length > 0)
-        {
-            startRotation = lights[0].transform.rotation;
-        }
+        //startRotation = lights["Player_1"].transform.rotation;
     }
 
     void OnTriggerEnter(Collider p_thing)
@@ -22,18 +29,15 @@ public class RespawnPoint : MonoBehaviour
         Respawn script = (Respawn)p_thing.GetComponent("Respawn");
         if (script)
         {
-            RespawnPoint point = (RespawnPoint)script.lastSpawnPoint.GetComponent(typeof(RespawnPoint));
+            //RespawnPoint point = (RespawnPoint)script.lastSpawnPoint.GetComponent(typeof(RespawnPoint));
 
-            foreach (Light light in point.lights)
-            {
-                light.enabled = false;
-            }
+            //if (lights.Count > 0)
+            //{
+            //    point.lights[p_thing.name].enabled = false;
 
-            foreach (Light light in lights)
-            {
-                light.transform.rotation = startRotation;
-                light.enabled = true;
-            }
+            //    lights[p_thing.name].transform.rotation = startRotation;
+            //    lights[p_thing.name].enabled = true;
+            //}
 
             script.lastSpawnPoint = gameObject;
         }

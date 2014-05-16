@@ -4,7 +4,9 @@ using System.Collections;
 public class Respawn : MonoBehaviour
 {
     [HideInInspector] public bool isRespawning { get; set; }      //Use this to stop movement when respawning
-    [HideInInspector] public GameObject lastSpawnPoint;
+    [HideInInspector]
+    public GameObject lastSpawnPoint { get; set; }
+
     public Vector3 offset;
     public float despawnDelay = 0.0f;
     public float respawnDelay = 0.0f;
@@ -19,6 +21,7 @@ public class Respawn : MonoBehaviour
     {
         if (lastSpawnPoint == null)
         {
+            Debug.Log("LastSpawnPoint == null! This shouldn't be happening!!!");
             yield break;
         }
 
