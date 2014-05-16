@@ -5,9 +5,14 @@ public class KillPlane : MonoBehaviour
 {
     void OnTriggerEnter(Collider p_thing)
     {
-        if (p_thing.GetComponent(typeof(Respawn)))
+        Respawn script = (Respawn)p_thing.GetComponent(typeof(Respawn));
+        if (script)
         {
-            p_thing.SendMessage("Spawn", SendMessageOptions.DontRequireReceiver);
+            StartCoroutine(script.Spawn());
+        }
+        else
+        {
+            Destroy(p_thing.gameObject);        //Stops calculations on objects that can't be reached any more
         }
     }
 }
