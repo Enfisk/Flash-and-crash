@@ -14,6 +14,7 @@ public class ScreenshotManager : MonoBehaviour {
     private Quaternion baseRotation;
     private Vector3 basePosition;
     private GameObject mainCamera;
+    private float originalFixedDT;
 
     private CameraScript cameraFollowScript;
 	
@@ -37,6 +38,8 @@ public class ScreenshotManager : MonoBehaviour {
         baseRotation = mainCamera.transform.rotation;
         basePosition = mainCamera.transform.position;
         cameraFollowScript = (CameraScript)mainCamera.GetComponent(typeof(CameraScript));
+
+        originalFixedDT = Time.fixedDeltaTime;
     }
 
     void Update()
@@ -46,47 +49,47 @@ public class ScreenshotManager : MonoBehaviour {
             #region Input
             if (Input.GetKey(KeyCode.W))
             {
-                mainCamera.transform.Translate(transform.forward * normalMovespeed * Time.deltaTime);
+                mainCamera.transform.Translate(transform.forward * normalMovespeed/* * Time.deltaTime*/);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                mainCamera.transform.Translate(-transform.forward * normalMovespeed * Time.deltaTime);
+                mainCamera.transform.Translate(-transform.forward * normalMovespeed/* * Time.deltaTime*/);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                mainCamera.transform.Translate(-transform.right * normalMovespeed * Time.deltaTime);
+                mainCamera.transform.Translate(-transform.right * normalMovespeed/* * Time.deltaTime*/);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                mainCamera.transform.Translate(transform.right * normalMovespeed * Time.deltaTime);
+                mainCamera.transform.Translate(transform.right * normalMovespeed/* * Time.deltaTime*/);
             }
 
             if (Input.GetKey(KeyCode.Q))
             {
-                mainCamera.transform.position += transform.up * normalMovespeed * Time.deltaTime;
+                mainCamera.transform.position += transform.up * normalMovespeed/* * Time.deltaTime*/;
             }
             else if (Input.GetKey(KeyCode.E))
             {
-                mainCamera.transform.position += -transform.up * normalMovespeed * Time.deltaTime;
+                mainCamera.transform.position += -transform.up * normalMovespeed/* * Time.deltaTime*/;
             }
 
             if (Input.GetKey(KeyCode.Keypad4))
             {
-                mainCamera.transform.Rotate(Vector3.up, -60 * Time.deltaTime, Space.World);
+                mainCamera.transform.Rotate(Vector3.up, -10/* * Time.deltaTime*/, Space.World);
             }
             else if (Input.GetKey(KeyCode.Keypad6))
             {
-                mainCamera.transform.Rotate(Vector3.up, 60 * Time.deltaTime, Space.World);
+                mainCamera.transform.Rotate(Vector3.up, 10/* * Time.deltaTime*/, Space.World);
             }
 
             if (Input.GetKey(KeyCode.Keypad8))
             {
-                mainCamera.transform.Rotate(-60 * Time.deltaTime, 0, 0);
+                mainCamera.transform.Rotate(-10/* * Time.deltaTime*/, 0, 0);
             }
             else if (Input.GetKey(KeyCode.Keypad2))
             {
-                mainCamera.transform.Rotate(60 * Time.deltaTime, 0, 0);
+                mainCamera.transform.Rotate(10/* * Time.deltaTime*/, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
@@ -97,6 +100,18 @@ public class ScreenshotManager : MonoBehaviour {
             {
                 normalMovespeed /= sprintMultiplier;
             }
+
+            if (Input.GetKeyDown(KeyCode.KeypadMinus))
+            {
+                Time.timeScale = 0.0f;
+                Time.fixedDeltaTime = 0.0f;
+            }
+            else if (Input.GetKeyDown(KeyCode.KeypadPlus))
+            {
+                Time.timeScale = 1.0f;
+                Time.fixedDeltaTime = originalFixedDT;
+            }
+
             #endregion // All input for screenshot mode
         }
     }
@@ -121,5 +136,8 @@ public class ScreenshotManager : MonoBehaviour {
         mainCamera.transform.position = basePosition;
         mainCamera.transform.rotation = baseRotation;
         cameraFollowScript.enabled = true;
+
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = originalFixedDT;
     }
 }

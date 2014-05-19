@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 
 [ExecuteInEditMode]
@@ -9,19 +8,24 @@ public class WaypointGizmo : MonoBehaviour
 
     void Awake()
     {
-        foreach (Transform child in transform.parent)
+        if (Application.isEditor)
         {
-            if (child.name.Contains("Platform") || child.name.Contains("Box"))
+            foreach (Transform child in transform.parent)
             {
-                Debug.Log("Found it! " + child.name);
-                platform = child.gameObject;
+                if (child.name.Contains("Platform") || child.name.Contains("Box"))
+                {
+                    platform = child.gameObject;
+                }
             }
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, platform.renderer.bounds.size);
+        if (Application.isEditor)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, platform.renderer.bounds.size);
+        }
     }
 }
