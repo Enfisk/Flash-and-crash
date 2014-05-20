@@ -238,6 +238,18 @@ Prefab:
       propertyPath: invertX
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 7447f0b58f928a54883d166dfe67b4e9, type: 2}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3648be6c71e809438c5de0d34b10ccf, type: 3}
+    - target: {fileID: 11400002, guid: 7447f0b58f928a54883d166dfe67b4e9, type: 2}
+      propertyPath: sensitivity
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 7447f0b58f928a54883d166dfe67b4e9, type: 2}
+      propertyPath: invertZ
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7447f0b58f928a54883d166dfe67b4e9, type: 2}
   m_RootGameObject: {fileID: 1204416236}
@@ -651,7 +663,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1002158026}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -8.21543312, z: 4.23069}
+  m_LocalPosition: {x: 0, y: -9.91184998, z: 2.63586044}
   m_LocalScale: {x: .720000029, y: .720000029, z: .720000029}
   m_Children:
   - {fileID: 1049883387}
@@ -679,7 +691,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049883386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.00000048, z: 3.57627869e-07}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1002158029}
@@ -781,6 +793,8 @@ GameObject:
   - 82: {fileID: 1204416239}
   - 114: {fileID: 1204416238}
   - 114: {fileID: 1204416237}
+  - 114: {fileID: 1204416248}
+  - 114: {fileID: 1204416247}
   m_Layer: 11
   m_Name: Player_2
   m_TagString: ball2
@@ -814,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 9831467d582dc204fbf8063a2c657ea8, type: 3}
+  - {fileID: 8300000, guid: e3648be6c71e809438c5de0d34b10ccf, type: 3}
 --- !u!82 &1204416239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -889,9 +903,9 @@ MonoBehaviour:
   manager: {fileID: 1270134810}
   deviceNumber: 1
   maxSpeed: 10
-  sensitivity: 350
+  sensitivity: 400
   invertX: -1
-  invertZ: 1
+  invertZ: -1
 --- !u!108 &1204416241
 Light:
   m_ObjectHideFlags: 0
@@ -999,6 +1013,34 @@ Transform:
   m_Children:
   - {fileID: 1155437771}
   m_Father: {fileID: 0}
+--- !u!114 &1204416247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1204416236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972207c3c99f2ca409a7ac1c2ce34313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1204416248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1204416236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc128bbeec139e54395ae1adba33e48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flickeringTime: .5
+  timeBetweenFlickers: .5
+  minIntensity: 0
+  maxIntensity: 1
+  flickering: 0
+  timeSinceLastFlicker: 0
 --- !u!1 &1209647276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1059,7 @@ GameObject:
   - 114: {fileID: 1209647279}
   - 114: {fileID: 1209647278}
   - 114: {fileID: 1209647277}
+  - 114: {fileID: 1209647288}
   m_Layer: 11
   m_Name: Player_1
   m_TagString: ball1
@@ -1068,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 9831467d582dc204fbf8063a2c657ea8, type: 3}
+  - {fileID: 8300000, guid: e3648be6c71e809438c5de0d34b10ccf, type: 3}
 --- !u!82 &1209647280
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1141,11 +1184,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1270134810}
-  deviceNumber: 1
+  deviceNumber: 0
   maxSpeed: 10
-  sensitivity: 350
-  invertX: 1
-  invertZ: 1
+  sensitivity: 400
+  invertX: -1
+  invertZ: -1
 --- !u!108 &1209647282
 Light:
   m_ObjectHideFlags: 0
@@ -1253,6 +1296,17 @@ Transform:
   m_Children:
   - {fileID: 57661418}
   m_Father: {fileID: 0}
+--- !u!114 &1209647288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209647276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972207c3c99f2ca409a7ac1c2ce34313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1259838049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,7 +2028,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
       propertyPath: invertX
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
       propertyPath: manager
@@ -1982,8 +2036,20 @@ Prefab:
       objectReference: {fileID: 1270134810}
     - target: {fileID: 11400004, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
       propertyPath: deviceNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
+      propertyPath: sensitivity
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
+      propertyPath: invertZ
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3648be6c71e809438c5de0d34b10ccf, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a6890c9ba0253d4282a89a252caa22f, type: 2}
   m_RootGameObject: {fileID: 1209647276}

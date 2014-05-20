@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour {
     {
         if (p_collision.gameObject.tag.Contains("ball") || p_collision.gameObject.tag == "wall")
         {
-            soundScript.PlaySound("impact", (rigidbody.velocity.magnitude / movementScript.maxSpeed) >= 0.5f ? (rigidbody.velocity.magnitude / movementScript.maxSpeed) : 0.5f);
+            soundScript.PlaySound("impact_" + Random.Range(2, 7), (rigidbody.velocity.magnitude / movementScript.maxSpeed) >= 0.5f ? (rigidbody.velocity.magnitude / movementScript.maxSpeed) : 0.5f);
             StartCoroutine(flickerScript.FlickerLights());
             StartCoroutine(SpawnParticles(p_collision.transform));
         }
