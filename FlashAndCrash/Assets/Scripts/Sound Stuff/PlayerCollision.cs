@@ -4,8 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(FlickeringLight))]
 public class PlayerCollision : MonoBehaviour {
-    public GameObject prefab;
-
+    private GameObject prefab;
     private MultisoundEmitter soundScript;
     private PlayerMovement movementScript;
     private FlickeringLight flickerScript;
@@ -13,6 +12,7 @@ public class PlayerCollision : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        prefab          = Resources.Load("Spark Particles", typeof(GameObject)) as GameObject;
         particleSystem  = (ParticleSystem)prefab.GetComponent(typeof(ParticleSystem));
         soundScript     = (MultisoundEmitter)GetComponent(typeof(MultisoundEmitter));
         movementScript  = (PlayerMovement)GetComponent(typeof(PlayerMovement));
