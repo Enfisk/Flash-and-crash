@@ -3,9 +3,8 @@ using System.Collections;
 
 public class TriggerArea : MonoBehaviour {
     public float ActivationDelay;
-    public bool isTriggered { get; set; }
+    [HideInInspector] public bool isTriggered { get; set; }
 
-    [HideInInspector]
     private float timeInTrigger;
     private int collidersInTrigger;
 
