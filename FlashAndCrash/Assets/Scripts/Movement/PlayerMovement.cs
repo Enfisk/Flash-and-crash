@@ -37,8 +37,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //Debug.Log(string.Format("X-value: {0}, Y-value: {1}, name: {2}", xValue, zValue, gameObject.name));
+
         if (rigidbody)
-        rigidbody.AddForce(xValue * Time.deltaTime * sensitivity * (int)invertX, 0, -zValue * Time.deltaTime * sensitivity * (int)invertZ);
+            rigidbody.AddForce(xValue * Time.deltaTime * sensitivity * (int)invertX, 0, -zValue * Time.fixedDeltaTime * sensitivity * (int)invertZ, ForceMode.Acceleration);
 
         xValue = 0;
         zValue = 0;

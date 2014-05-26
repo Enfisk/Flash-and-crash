@@ -65,7 +65,7 @@ public class MovementManager : MonoBehaviour {
     }
     
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         while (ManyMouse_PollEvent(ref events) != 0)
         {

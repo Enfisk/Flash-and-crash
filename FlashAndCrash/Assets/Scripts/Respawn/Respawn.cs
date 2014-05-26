@@ -34,7 +34,14 @@ public class Respawn : MonoBehaviour
 
         yield return new WaitForSeconds(despawnDelay);
 
-        transform.position = lastSpawnPoint.transform.position + offset;
+        if (Physics.CheckCapsule(lastSpawnPoint.transform.position + offset, lastSpawnPoint.transform.position + offset, 1))
+        {
+            transform.position = lastSpawnPoint.transform.position;
+        }
+        else
+        {
+            transform.position = lastSpawnPoint.transform.position + offset;
+        }
 
         //Play respawn animation here
         yield return new WaitForSeconds(respawnDelay);
