@@ -1,0 +1,27 @@
+#Factory_Floor_8x1.54x1.obj
+#Monday, May 26, 2014
+#9:49:07 PM
+#-------
+
+#Factory_Floor_8x1.54x1
+#-------
+g Factory_Floor_8x1.54x1
+v -4 9.179115E-08 -0.7700001
+v 4 -9.179115E-08 0.7700001
+v 4 9.179115E-08 -0.7700001
+v -4 -9.179115E-08 0.7700001
+
+vn 0 1 1.192093E-07
+vn 0 1 1.192093E-07
+vn 0 1 1.192093E-07
+vn 0 1 1.192093E-07
+
+vt 0 0
+vt 1 1
+vt 1 0
+vt 0 1
+
+usemtl Factory_Floor_8x1
+usemap Factory_Floor_8x1
+f 1/1/1 2/2/2 3/3/3
+f 2/2/2 1/1/1 4/4/4
