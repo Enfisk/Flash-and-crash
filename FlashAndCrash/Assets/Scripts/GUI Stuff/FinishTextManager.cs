@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿//Hacked together, but meh.
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class FinishTextManager : MonoBehaviour
 {
     public float movementSpeed = 20.0f;
+    public float scaleTime = 1.0f;
+    public Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f);
 
     private Dictionary<string, GameObject> children;
     private bool movedText;
@@ -28,8 +32,10 @@ public class FinishTextManager : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveText(GameObject p_text)     //Hacked together, but meh.
+    private IEnumerator MoveText(GameObject p_text)
     {
+        float originalTime = scaleTime;
+
         while (p_text.transform.position != children["Point 1"].transform.position)
         {
             p_text.transform.position = Vector3.MoveTowards(p_text.transform.position, children["Point 1"].transform.position, movementSpeed * Time.deltaTime);
@@ -40,8 +46,10 @@ public class FinishTextManager : MonoBehaviour
 
         while (p_text.transform.position != children["Point 2"].transform.position)
         {
+            p_text.transform.localScale = Vector3.Lerp(targetScale, transform.localScale, scaleTime / originalTime);        //Doesn't work with p_text.transform.localScale for some reason. Oh well.
             p_text.transform.position = Vector3.MoveTowards(p_text.transform.position, children["Point 2"].transform.position, movementSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
+            scaleTime -= Time.deltaTime;
         }
     }
 }
