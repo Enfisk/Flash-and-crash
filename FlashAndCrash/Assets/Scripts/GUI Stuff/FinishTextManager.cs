@@ -35,6 +35,7 @@ public class FinishTextManager : MonoBehaviour
     private IEnumerator MoveText(GameObject p_text)
     {
         float originalTime = scaleTime;
+        float currentTime = scaleTime;
 
         while (p_text.transform.position != children["Point 1"].transform.position)
         {
@@ -46,10 +47,10 @@ public class FinishTextManager : MonoBehaviour
 
         while (p_text.transform.position != children["Point 2"].transform.position)
         {
-            p_text.transform.localScale = Vector3.Lerp(targetScale, transform.localScale, scaleTime / originalTime);        //Doesn't work with p_text.transform.localScale for some reason. Oh well.
+            currentTime -= Time.deltaTime;
+            p_text.transform.localScale = Vector3.MoveTowards(p_text.transform.localScale, targetScale, currentTime / originalTime);            //This doesn't really behave like I want it to. Fix later?
             p_text.transform.position = Vector3.MoveTowards(p_text.transform.position, children["Point 2"].transform.position, movementSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
-            scaleTime -= Time.deltaTime;
         }
     }
 }
