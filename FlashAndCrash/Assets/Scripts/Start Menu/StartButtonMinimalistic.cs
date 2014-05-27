@@ -29,6 +29,6 @@ public class StartButtonMinimalistic : BaseActivatee {
             LoadLevel();
         }
 
-        Mathf.Clamp(activations, 0, 2);
+        activations = Mathf.Clamp(activations, 0, 2);
 	}
 }
