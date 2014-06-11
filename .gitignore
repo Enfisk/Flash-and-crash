@@ -17,3 +17,5 @@
 *.sln
 *.suo
 *.userprefs
+*.exr
+*.exr.meta
