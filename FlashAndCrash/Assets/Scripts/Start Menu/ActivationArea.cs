@@ -23,8 +23,11 @@ public class ActivationArea : MonoBehaviour {
 
     void OnTriggerExit()
     {
+        if (activated)
+        {
+            activatee.Deactivate();
+        }
         anim.SetBool("Activated", false);
-        activatee.Deactivate();
         timeWaited = 0.0f;
         activated = false;
     }
