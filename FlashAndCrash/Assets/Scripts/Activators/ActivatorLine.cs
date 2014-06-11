@@ -11,7 +11,11 @@ public class ActivatorLine : BaseActivatee {
 	// Use this for initialization
 	void Start () {
         mat = new Material(copyMat);
-        renderer.material = mat;
+
+        foreach (Transform child in transform)
+        {
+            child.renderer.material = mat;
+        }
 	}
 
     public override void Activate()
