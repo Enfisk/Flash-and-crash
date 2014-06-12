@@ -7,7 +7,6 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioSource[] sources = new AudioSource[2];
     private AudioClip clip;
-    private float time = 0.0f;
     // Use this for initialization
     void Start()
     {
@@ -32,7 +31,5 @@ public class MusicPlayer : MonoBehaviour
                 audio.Play();
             }
         }
-
-        time = audio.time;
     }
 }

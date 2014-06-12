@@ -8,12 +8,12 @@ public class PlayerCollision : MonoBehaviour {
     private MultisoundEmitter soundScript;
     private PlayerMovement movementScript;
     private FlickeringLight flickerScript;
-    [HideInInspector] public ParticleSystem particleSystem;
+    [HideInInspector] private ParticleSystem prefabParticle;
     
 	// Use this for initialization
 	void Start () {
         prefab          = Resources.Load("Spark Particles", typeof(GameObject)) as GameObject;
-        particleSystem  = (ParticleSystem)prefab.GetComponent(typeof(ParticleSystem));
+        prefabParticle  = (ParticleSystem)prefab.GetComponent(typeof(ParticleSystem));
         soundScript     = (MultisoundEmitter)GetComponent(typeof(MultisoundEmitter));
         movementScript  = (PlayerMovement)GetComponent(typeof(PlayerMovement));
         flickerScript   = (FlickeringLight)GetComponent(typeof(FlickeringLight));
@@ -32,7 +32,7 @@ public class PlayerCollision : MonoBehaviour {
     private IEnumerator SpawnParticles(Transform p_transform)
     {
         Object particles = Instantiate(prefab, p_transform.position, new Quaternion());
-        yield return new WaitForSeconds(particleSystem.duration - 0.1f);
+        yield return new WaitForSeconds(prefabParticle.duration - 0.1f);
         Destroy(particles);
     }
 }

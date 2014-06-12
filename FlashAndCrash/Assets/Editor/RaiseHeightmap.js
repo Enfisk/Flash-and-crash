@@ -33,7 +33,7 @@ class RaiseHeightmap extends ScriptableWizard {
         if (!terrain) {
             return;
         }
-        Undo.RegisterUndo(terrain, "Raise or Lower Heightmap");
+        Undo.RecordObject(terrain, "Raise or Lower Heightmap");
  
         var heights = terrain.GetHeights(0, 0, terrain.heightmapWidth, terrain.heightmapHeight);
         for (var y = 0; y < terrain.heightmapHeight; y++) {
