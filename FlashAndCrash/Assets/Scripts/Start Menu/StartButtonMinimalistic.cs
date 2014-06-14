@@ -4,24 +4,32 @@ using System.Collections;
 public class StartButtonMinimalistic : BaseActivatee {
     public Sprite[] sprites;
 
+    private Animator animationObject;
     private int activations = 0;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        spriteRenderer = (SpriteRenderer) GetComponent(typeof(SpriteRenderer));
+        foreach (Transform child in transform)
+        {
+            animationObject = (Animator)child.GetComponent(typeof(Animator));
+
+            if (animationObject)
+            {
+                break;
+            }
+        }
     }
 
     public override void Activate()
     {
         activations++;
-        spriteRenderer.sprite = activations > sprites.Length - 1 ? sprites[0] : sprites[activations];
+        animationObject.SetBool("Filled", true);
     }
 
     public override void Deactivate(float p_value = 0.0f)
     {
         activations--;
-        spriteRenderer.sprite = activations > sprites.Length - 1 ? sprites[0] : sprites[activations];
+        animationObject.SetBool("Filled", false);
     }
 
     private void LoadLevel()     //Fix nice transition later.
