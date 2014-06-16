@@ -6,9 +6,12 @@ public class ActivationArea : MonoBehaviour {
     public float waitTime = 2.0f;
     public Animator anim;
     public Transform readyText;
+    public Sprite[] sprites;
 
     private float timeWaited = 0.0f;
     private bool activated = false;
+    private SpriteRenderer readyTextRenderer;
+    //private Animator readyTextAnimator;
 
     void Start()
     {
@@ -23,6 +26,9 @@ public class ActivationArea : MonoBehaviour {
                 }
             }
         }
+
+        readyTextRenderer = (SpriteRenderer)readyText.GetComponent(typeof(SpriteRenderer));
+        //readyTextAnimator = (Animator)readyText.GetComponent(typeof(Animator));
     }
     
     void OnTriggerStay()
@@ -34,7 +40,9 @@ public class ActivationArea : MonoBehaviour {
             anim.SetBool("Activated", true);
             activatee.Activate();
             activated = true;
-            readyText.position += new Vector3(0, 2, 0);
+            readyTextRenderer.sprite = sprites[1];
+            //readyText.position += new Vector3(0, 2, 0);
+            //readyTextAnimator.SetTrigger("Triggered");
         }
     }
 
@@ -43,10 +51,12 @@ public class ActivationArea : MonoBehaviour {
         if (activated)
         {
             activatee.Deactivate();
-            readyText.position -= new Vector3(0, 2, 0);
+            //readyText.position -= new Vector3(0, 2, 0);
         }
         anim.SetBool("Activated", false);
         timeWaited = 0.0f;
         activated = false;
+        readyTextRenderer.sprite = sprites[0];
+        //readyTextAnimator.SetBool("Triggered", false);
     }
 }
